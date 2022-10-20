@@ -1,0 +1,66 @@
+---
+title: "Project R Markdown"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+author: "Yu Cao"
+date: "`r Sys.Date()`"
+---
+
+```{r, here-i-am, include = FALSE}
+here::i_am(
+  "report.Rmd"
+)
+```
+
+```{r, set-chunk-opts, echo = FALSE,warning=FALSE}
+library(knitr)
+opts_chunk$set(
+  echo = FALSE, warning = FALSE, message = FALSE,fig.align="center") #align all the figures in the center
+```
+
+
+# Introduction
+The dataset found on https://www.kaggle.com/datasets/amandam1/breastcancerdataset consists of 334 surgical breast cancer patients who have undergone tumor removal. The dataset consists of 16 variables, including patient ID, age, gender, expression levels of protein1-protein4, tumor stage, histology, ER status, PR status, HER2 status, surgery type, date of surgery, date of the last visit, and patient status. The R Markdown report, based on the data including the tables and plots shows descriptive characteristics, box plots that visualize the distribution of protein1 - protein 4 in tumour stage by age category, cross tables of HER2 status~gender/age category including Pearson's Chi-squared test and Fisher's Exact Test results to determine whether the association between the variables is statistically significant. 
+
+# Load data
+```{r load,warning=FALSE,warning=FALSE,echo=TRUE}
+library(readr)
+BRCA <- read_csv("D:/22fall/INFO550/Final/BRCA.csv",show_col_types = FALSE)
+head(BRCA)
+```
+
+# Descriptive statistics
+
+The data frame summary shows that the mean of age is 58.9, with standard deviation of 13, min of 9, and max of 90. The mean of Protein1 is 0, with standard deviation of 0.6, min of -2.3, and max of 1.6. The mean of Protein2 is 0.9, with standard deviation of 0.9, min of -0.98, and max of 3.40. The mean of Protein3 is -0.10, with standard deviation of 0.59, min of -1, and max of 3.
+4. The mean of Protein4 is 0, with standard deviation of 0.6, min of -2.3, and max of 1.6.
+There are 330 (98.8%) female patients and 4 (1.2%) male patients. 64(19.2%) patients are in the tumor stage I, 189(56.6%) patients are in the tumor stage II, 81(24.3%) patients are in the tumor stage III. As for Histology, 233(69.8%) patients have Infiltrating Ductal Carcinoma, 89(26.6%) patients have Infiltrating Lobular Carcinoma, 12(3.6%) patients have Mucinous Carcinoma. For ER status, 334(100%) patients are Positive. For PR status, 334(100%) patients are Positive. For HER2 status, 305(91.3%) patients are Negative, 29(8.7%) patients are Positive. For Surgery_type, 66(19.8%) patients had Lumpectomy, 96(28.7%) patients had Modified Radical Mastectomy, 105(31.4%) patients had Other, 67(20.1%) patients had Simple Mastectomy.255(79.4%) patients are alive, and 66(20.6%) patients are dead.
+
+```{r,echo=FALSE,warning=FALSE}
+#!   read table1 from output directory
+kk <- readRDS(
+  file = here::here("output/table_one.rds")
+)
+library(summarytools)
+print(kk, method='render', footnote = NA)
+```
+
+# Boxplots of Protein1-Protein4 versus tumour stage by age category
+
+Use boxplots to visualize Protein1-Protein4 distribution in different tumour stages by age category. The cutoff point of age is 58.9, which is the mean of this sample.Use t-test to compare the means of two age groups in different tumour stages. The plots suggest that there is no significance evidence that the means of Protein1-Protein4  are different by tumour stages.
+
+```{r, plot-data}
+knitr::include_graphics(
+  here::here("output/plot1.png")
+)
+knitr::include_graphics(
+  here::here("output/plot2.png")
+)
+knitr::include_graphics(
+  here::here("output/plot3.png")
+)
+knitr::include_graphics(
+  here::here("output/plot4.png")
+)
+```
