@@ -27,7 +27,8 @@ The dataset found on https://www.kaggle.com/datasets/amandam1/breastcancerdatase
 # Load data
 ```{r load,warning=FALSE,warning=FALSE,echo=TRUE}
 library(readr)
-BRCA <- read_csv("D:/22fall/INFO550/Final/BRCA.csv",show_col_types = FALSE)
+library(here)
+BRCA <- read_csv(file = here::here("data/BRCA.csv"),show_col_types = FALSE)
 head(BRCA)
 ```
 

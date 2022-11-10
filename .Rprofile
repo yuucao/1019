@@ -1,5 +1,1 @@
 source("renv/activate.R")
-.libPaths()
-.libPaths("C:/User/Yu")
-.libPaths()
-cat("hi from profile")
