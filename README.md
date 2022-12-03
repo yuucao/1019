@@ -26,4 +26,4 @@
 
 # Report generation
 Inside the container, run `make report.html` to build the report
-
+Use command line, run run `make report/report.html` to build the report
