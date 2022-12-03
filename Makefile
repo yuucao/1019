@@ -30,3 +30,18 @@ install:
 .PHONY: clean
 clean: 
 	rm output/*.rds
+
+#Docker rules
+#PROJECTFILES = report.Rmd code/01_sum.R code/02_make_plots.R code/04_render_report.R Makefile
+#RENVFILES = renv.lock renv/activate.R renv/settings.dcf
+
+#rule to bulid an image
+#image: Dockerfile $(PROJECTFILES) $(RENVFILES)
+#	docker build -t image .
+#	touch $@
+
+#rule to run container
+report/report.html:
+	docker run -v "/$$(pwd)/report":/project/report ycao987/imagee
+#	docker run -v "/$$(pwd)/report":/project/report image
+	

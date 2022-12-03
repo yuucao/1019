@@ -49,7 +49,7 @@ print(kk, method='render', footnote = NA)
 
 # Boxplots of Protein1-Protein4 versus tumour stage by age category
 
-Use boxplots to visualize Protein1-Protein4 distribution in different tumour stages by age category. The cutoff point of age is 58.9, which is the mean of this sample.Use t-test to compare the means of two age groups in different tumour stages. The plots suggest that there is no significance evidence that the means of Protein1-Protein4  are different by tumour stages.
+Use boxplots to visualize Protein1-Protein4 distribution in different tumour stages by age category. The plots suggest that there is no significance evidence that the means of Protein1-Protein4  are different by tumour stages.
 
 ```{r, plot-data}
 knitr::include_graphics(
